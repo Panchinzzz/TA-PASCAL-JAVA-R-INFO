@@ -1,4 +1,4 @@
-rogram P1EJ1;
+Program P1EJ2;
 CONST DimF = 6;
 
 type
