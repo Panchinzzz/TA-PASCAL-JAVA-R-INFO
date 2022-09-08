@@ -32,24 +32,6 @@ O.ult[i] := nil;
 end;
 end;
 
-
-procedure CargarArreglo(var O: OBJ);
-
-{procedure AgregarAtras(var l:lista; var ult: lista; p: pelicula);
-var aux : lista;
-begin
-new(aux);
-aux^.dato := p;
-aux^.sig := nil;
-
-if(l = nil) then l := aux
- else ult^.sig := aux;
- 
-ult := aux;
-
-end;
-}
-
 procedure AgregarOrdenado(var l:lista; p: pelicula);
 var aux, act, ant : lista;
 begin
@@ -69,6 +51,23 @@ if(ant = act) then l := aux
     else ant^.sig := aux;
     aux^.sig := act;
 end;
+
+
+procedure CargarArreglo(var O: OBJ);
+
+{procedure AgregarAtras(var l:lista; var ult: lista; p: pelicula);
+var aux : lista;
+begin
+new(aux);
+aux^.dato := p;
+aux^.sig := nil;
+if(l = nil) then l := aux
+ else ult^.sig := aux;
+ 
+ult := aux;
+end;
+}
+
 
 procedure CargarRegistro(var p: pelicula);
 begin
@@ -107,13 +106,61 @@ c[i] :=c[i]^.sig;
 end;
 writeln('-------------');
 end;
+end;
+
+procedure Merge(c:catalogo; var ln: lista);
+procedure Minimo(var c:catalogo; var index: integer; var min: pelicula);
+var i: integer;
+begin
+min.cod := 999;
+index := -1;
+for i := 1 to Gen do begin
+
+if (c[i] <> nil) then begin
+if(c[i]^.dato.cod <= min.cod) then begin
+min := c[i]^.dato;
+index := i;
+end;
+end;
+end;
+if (index <> -1) then c[index] := c[index]^.sig;
+end;
+
+var index:integer; min : pelicula;
+begin
+
+Minimo(c,index, min);
+while (min.cod <> 999) do begin
+
+AgregarOrdenado(ln, min);
+Minimo(c,index, min);
+end;
 
 end;
 
-var O: OBJ;
+procedure LeerLista(l: lista);
 begin
+
+while l <> nil do begin
+writeln(l^.dato.cod);
+writeln(l^.dato.genero);
+writeln(l^.dato.prom);
+writeln;
+
+l :=l^.sig;
+end;
+writeln('-------------');
+
+end;
+
+var O: OBJ; ln:lista;
+begin
+ln := nil;
 Inicializar(O);
 CargarArreglo(O);
 writeln;
-LeerArreglo(o.Pri)
+LeerArreglo(o.Pri);
+Merge(o.pri,ln);
+
+LeerLista(ln);
 end.
