@@ -1,54 +1,35 @@
-package tema4;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package tema4;
 
 /**
  *
  * @author theVa
  */
-public class VisorFifurasModificado {
- 
- private int mostradas;
- private int guardadas;
- private int capacidadMaxima=5;
- private Figura [] vector;
+public class Ej5p5 {
 
- public VisorFifurasModificado(){
-     vector = new Figura[capacidadMaxima];
-     guardadas = 0;
-     mostradas = 0;
- }
-
- public void guardar(Figura f){
- if (quedaEspacio()){
-     vector[guardadas] = f;
-     guardadas++;
- }
- 
-}
-
-public boolean quedaEspacio(){
- if (guardadas == 5) return false;
- return true;
- }
-
- public void mostrar(Figura f){
-     System.out.println(f.toString());
-     guardar(f);
-     mostradas++;
- }
- public int getGuardadas() {
- return guardadas;
- }
-
- public void Almacenadas(){
-     int i;
-     for(i = 0; i < guardadas; i++){
-         System.out.println(vector[i].toString());
-     }
- }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       VisorFifurasModificado NuevoVisor = new VisorFifurasModificado();
+       Cuadrado c1 = new Cuadrado(10,"Violeta","Rosa");
+       Rectangulo r= new Rectangulo(20,10,"Azul","Celeste");
+       Cuadrado c2= new Cuadrado(30,"Rojo","Naranja");
+       
+       NuevoVisor.mostrar(c1);
+       NuevoVisor.mostrar(r);
+       NuevoVisor.mostrar(c2);
+       NuevoVisor.mostrar(c1);
+       NuevoVisor.mostrar(r);
+       NuevoVisor.mostrar(c2);
+       
+       System.out.println("-------------------------------");
+       
+       NuevoVisor.Almacenadas();
+    }
+    
 }
