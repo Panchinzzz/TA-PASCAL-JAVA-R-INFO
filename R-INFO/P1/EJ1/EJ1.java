@@ -33,4 +33,5 @@ variables
   Robot1 : tipo1
 comenzar
   AsignarArea(Robot1, AreaR1)
-  Iniciar(Rob
+  Iniciar(Robot1, 1, 1)
+fin
