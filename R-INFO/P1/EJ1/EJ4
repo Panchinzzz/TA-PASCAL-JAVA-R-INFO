@@ -1,0 +1,99 @@
+programa P1EJ4
+procesos
+  proceso RecolectarFlores(ES Flores: numero)
+  comenzar
+    si(HayFlorEnLaEsquina)
+      mientras(HayFlorEnLaEsquina)
+        tomarFlor
+        Flores := Flores + 1
+  fin
+  proceso RecolectarPapeles(ES Papeles: numero)
+  comenzar
+    si(HayPapelEnLaEsquina)
+      mientras(HayPapelEnLaEsquina)
+        tomarPapel
+        Papeles := Papeles + 1
+  fin
+  proceso RecorrerImpar(ES Flores: numero)
+  comenzar
+    repetir 12
+      repetir 5
+        RecolectarFlores(Flores)
+        mover
+      derecha
+      RecolectarFlores(Flores)
+      mover
+      derecha
+      repetir 5
+        RecolectarFlores(Flores)
+        mover
+      repetir 3
+        derecha
+      RecolectarFlores(Flores)
+      mover
+      repetir 3
+        derecha
+    repetir 5
+      RecolectarFlores(Flores)
+      mover   
+  fin
+  proceso RecorrerPar(ES Papeles: numero)
+  comenzar
+    repetir 12
+      repetir 5
+        RecolectarPapeles(Papeles)
+        mover
+      derecha
+      RecolectarPapeles(Papeles)
+      mover
+      derecha
+      repetir 5
+        RecolectarPapeles(Papeles)
+        mover
+      repetir 3
+        derecha
+      RecolectarPapeles(Papeles)
+      mover
+      repetir 3
+        derecha
+    repetir 5
+      RecolectarPapeles(Papeles)
+      mover   
+  fin
+areas
+  Area1 : AreaP(1,1, 25,100)
+  Area2 : AreaP(26,1, 50,100)
+  Area3 : AreaP(51,1, 75, 100)
+  Area4 : AreaP(76,1, 100, 100)
+robots
+  robot tipo1
+  variables
+    Flores: numero
+  comenzar
+    Flores:= 0
+    RecorrerImpar(Flores)
+    Informar(Flores)
+  fin
+  robot tipo2
+  variables
+    Papel: numero
+  comenzar
+    Papel := 0
+    RecorrerPar(Papel)
+    Informar(Papel)
+  fin
+variables
+  R1: tipo1
+  R2: tipo2
+  R3: tipo1
+  R4: tipo2
+comenzar
+  AsignarArea(R1, Area1)
+  AsignarArea(R2, Area2)
+  AsignarArea(R3, Area3)
+  AsignarArea(R4, Area4)
+  Iniciar(R1, 1, 1)
+  Iniciar(R2, 26, 1)
+  Iniciar(R3, 51, 1)
+  Iniciar(R4, 76, 1)
+fin
