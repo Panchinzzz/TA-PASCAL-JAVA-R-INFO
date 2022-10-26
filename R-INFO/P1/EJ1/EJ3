@@ -1,0 +1,95 @@
+programa P2Ej2
+procesos
+  proceso Recolectar(ES Flores: numero; ES Papeles: numero)
+  variables
+    papelL: numero
+    florL: numero
+  comenzar
+    papelL := 0
+    florL:= 0
+    si(HayFlorEnLaEsquina)
+      mientras(HayFlorEnLaEsquina)
+        tomarFlor
+        florL:= florL + 1
+        Flores := Flores + 1
+      repetir florL
+        depositarFlor
+    si(HayPapelEnLaEsquina)
+      mientras(HayPapelEnLaEsquina)
+        tomarPapel
+        papelL := papelL + 1
+        Papeles := Papeles + 1
+      repetir papelL
+        depositarPapel
+  fin
+  proceso Mover(E pasos: numero)
+  comenzar
+    repetir pasos
+      mover
+  fin
+  proceso EscalonX(ES Flores: numero; ES Papeles: numero)
+  variables
+    cant: numero
+    obj: numero
+  comenzar
+    cant := 1
+    obj := 0
+    repetir 4
+      Escalon(cant, Flores, Papeles)
+      si(Papeles - Flores = 1)
+        obj := obj + 1
+      cant := cant + 1
+      Flores := 0
+      Papeles := 0
+    Informar(obj)  
+  fin
+  proceso Escalon(E altura: numero; ES Flores: numero; ES Papeles: numero)
+  comenzar
+    repetir altura
+      Recolectar(Flores, Papeles)
+      mover
+    derecha
+    repetir altura
+      Recolectar(Flores, Papeles)
+      mover  
+    repetir 3
+      derecha
+  fin
+areas
+  Cuadrado: AreaC(1,1, 100, 100)
+robots
+  robot tipo1
+  variables
+    flores: numero
+    papeles: numero
+  comenzar
+    flores := 0
+    papeles := 0
+    EscalonX(flores, papeles)
+  fin
+  robot tipo2
+  variables
+    flores: numero
+    papeles: numero
+  comenzar
+    EscalonX(flores, papeles)
+  fin
+  robot tipo3
+  variables
+    flores: numero
+    papeles: numero
+  comenzar
+    EscalonX(flores, papeles)
+  fin
+variables
+  R1: tipo1
+  R2: tipo2
+  R3: tipo3
+comenzar
+  AsignarArea(R1, Cuadrado)
+  AsignarArea(R2, Cuadrado)
+  AsignarArea(R3, Cuadrado)
+  Iniciar(R1, 12,14)
+  Iniciar(R2, 17, 10)
+  Iniciar(R3, 22,6)
+fin
